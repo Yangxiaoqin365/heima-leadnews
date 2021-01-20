@@ -25,8 +25,7 @@
         <result column="sync_status" property="syncStatus"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id
-        , title, author_id, author_name, channel_id, channel_name, layout, flag, images,
+        id, title, author_id, author_name, channel_id, channel_name, layout, flag, images,
     labels, likes, collection, comment, views, province_id, city_id, county_id, created_time,
     publish_time,sync_status
     </sql>
@@ -41,10 +40,10 @@
             <if test="dto.countyId !=null">
                 and aa.county_id = #{dto.countyId}
             </if>
-            <if test="type != null and type == 1">
-                and aa.publish_time <![CDATA[<]]> #{dto.maxBehotTime}
+            <if test="type != null and type ==1">
+                and aa.publish_time <![CDATA[<]]> #{dto.minBehotTime}
             </if>
-            <if test="type != null and type == 2">
+            <if test="type != null and type ==2">
                 and aa.publish_time <![CDATA[>]]> #{dto.maxBehotTime}
             </if>
             <if test="dto.tag !='__all__'">
@@ -54,16 +53,16 @@
         limit #{dto.size}
     </select>
 
-    <select id="loadArticleListByIdList">
+    <select id="loadArticleListByIdList" resultMap="resultMap">
         select
         <include refid="Base_Column_List"/>
         from ap article
-        where id in
+        where id in(
         <trim suffix="" suffixOverrides=",">\
             <foreach collection="list" item="item" separator=",">
-                #{item.author_id}
+                #{item.authorId}
             </foreach>
         </trim>
-
+        )
     </select>
 </mapper>

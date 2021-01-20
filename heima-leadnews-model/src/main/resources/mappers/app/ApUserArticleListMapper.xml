@@ -21,13 +21,13 @@
         <where>
             user_id = #{user.id} and is_show = 0 and is_read = 0
             <if test="type != null and type == 1">
-                and aa.publish_time <![CDATA[<]]> #{dto.maxBehotTime}
+                and recommend_time <![CDATA[<]]> #{dto.maxBehotTime}
             </if>
             <if test="type != null and type == 2">
-                and aa.publish_time <![CDATA[>]]> #{dto.maxBehotTime}
+                and recommend_time <![CDATA[>]]> #{dto.maxBehotTime}
             </if>
             <if test="dto.tag == '__all__'">
-                channel_id = #{dto.tag}
+                and channel_id = #{dto.tag}
             </if>
         </where>
         limit #{dto.size}
