@@ -5,7 +5,6 @@ import com.heima.article.service.AppArticleService;
 import com.heima.common.article.constans.ArticleConstans;
 import com.heima.model.article.dtos.ArticleHomeDto;
 import com.heima.model.common.dtos.ResponseResult;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +16,7 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
 
     @Autowired
     private AppArticleService appArticleService;
+
     @Override
     @GetMapping("/load")
     public ResponseResult load(ArticleHomeDto dto) {
@@ -26,12 +26,12 @@ public class ArticleHomeController implements ArticleHomeControllerApi {
     @Override
     @GetMapping("/loadmore")
     public ResponseResult loadMore(ArticleHomeDto dto) {
-         return appArticleService.load(dto,ArticleConstans.LOADTYPE_LOAD_MORE);
+        return appArticleService.load(dto, ArticleConstans.LOADTYPE_LOAD_MORE);
     }
 
     @Override
     @GetMapping("/loadnew")
     public ResponseResult loadNew(ArticleHomeDto dto) {
-         return appArticleService.load(dto,ArticleConstans.LOADTYPE_LOAD_NEW);
+        return appArticleService.load(dto, ArticleConstans.LOADTYPE_LOAD_NEW);
     }
 }

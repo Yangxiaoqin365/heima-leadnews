@@ -20,7 +20,7 @@
             <if test="userId!=null">
                 and a.entry_id =#{userId} and type =1
             </if>
-            <if test="userId==null and equipmentId!=null">
+            <if test="equipmentId!=null">
                 and a.entry_id =#{equipmentId} and type =0
             </if>
         </where>
